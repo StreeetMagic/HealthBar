@@ -6,21 +6,29 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] public Slider _slider;
+    [SerializeField] public Health _health;
 
-    public void SetMaxHealth(int health)
+    private void OnEnable()
     {
-        _slider.maxValue = health;
-        _slider.value = health;
+        _health.Changed += OnHealthChanged;
     }
 
-    public void SetHealth(float health)
+    private void OnDisable()
     {
-        _slider.value = health;
+        _health.Changed -= OnHealthChanged;
     }
-
-    public float GetHealth()
+    
+    private void OnHealthChanged()
     {
-        return _slider.value;
+        StartCoroutine(ChangeHealth());
     }
-
+        
+    private IEnumerator ChangeHealth()
+    {
+        while (_slider.value != _health.Value)
+        {
+            _slider.value = (Mathf.MoveTowards(_slider.value, _health.Value, Time.deltaTime * _health.RecoveryRate));
+            yield return null;
+        }
+    }
 }

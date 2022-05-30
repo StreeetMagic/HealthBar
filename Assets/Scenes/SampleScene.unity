@@ -627,7 +627,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
@@ -740,8 +740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fbdbf4389d09c44c968df4abcc02c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
-  _currentHealth: 0
   _healthBar: {fileID: 752524488}
 --- !u!50 &2006651630
 Rigidbody2D:
