@@ -18,12 +18,12 @@ public class HealthBar : MonoBehaviour
         _health.Changed -= OnHealthChanged;
     }
     
-    private void OnHealthChanged()
+    private void OnHealthChanged(float health)
     {
-        StartCoroutine(ChangeHealth());
+        StartCoroutine(ChangeHealth(health));
     }
         
-    private IEnumerator ChangeHealth()
+    private IEnumerator ChangeHealth(float health)
     {
         while (_slider.value != _health.Value)
         {

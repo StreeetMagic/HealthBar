@@ -5,12 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int _speed;
-    
-    private void Start()
-    {
-        _speed = 5;
-    }
+    private int _speed = 5;
 
     private void Update()
     {
