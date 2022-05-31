@@ -6,13 +6,10 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float _value;
+    public event UnityAction Changed;
 
-    public event UnityAction<float> Changed;
-
+    private float _value;
     private int _maxValue = 100;
-    private int _hitDamage = 10;
-    private int _healValue = 10;
     private float _recoveryRate = 30;
 
     public float Value => _value;
@@ -23,21 +20,13 @@ public class Health : MonoBehaviour
         _value = _maxValue;
     }
 
-    public void Heal()
+    public void Change(float value)
     {
-        _value += _healValue;
-        Changed?.Invoke(_healValue);
+        _value += value;
+        
+        Changed?.Invoke();
 
         if (_value > 100)
             _value = 100;
-    }
-
-    public void Damage()
-    {
-        _value -= _hitDamage;
-        Changed?.Invoke(_hitDamage);
-
-        if (_value <= 0)
-            Destroy(gameObject);
     }
 }
