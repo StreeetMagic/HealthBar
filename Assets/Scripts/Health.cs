@@ -6,9 +6,9 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float _value;
-
     public event UnityAction <float> Changed;
+    
+    private float _value;
     private int _maxValue = 100;
     
     private void Start()
@@ -24,11 +24,8 @@ public class Health : MonoBehaviour
             _value = 100;
 
         if (_value <= 0)
-        {
             Destroy(gameObject);
-        }
         
         Changed?.Invoke(_value);
-
     }
 }

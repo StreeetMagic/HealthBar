@@ -9,6 +9,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField] public Health _health;
 
     private float _recoveryRate = 50;
+    private Coroutine _coroutine;
 
     private void OnEnable()
     {
@@ -19,12 +20,16 @@ public class HealthBar : MonoBehaviour
     {
         _health.Changed -= OnHealthChanged;
     }
-    
+
     private void OnHealthChanged(float value)
     {
-        StartCoroutine(Draw(value));
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+        _coroutine = StartCoroutine(Draw(value));
     }
-        
+
     private IEnumerator Draw(float value)
     {
         while (_slider.value != value)
@@ -34,3 +39,4 @@ public class HealthBar : MonoBehaviour
         }
     }
 }
+
